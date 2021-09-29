@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1130.4,5017.6" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sxl="clr-namespace:System.Xml.Linq;assembly=System.Xml.Linq" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upaf="clr-namespace:UiPath.Persistence.Activities.FormTask;assembly=UiPath.Persistence.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1130.4,5117.6" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sxl="clr-namespace:System.Xml.Linq;assembly=System.Xml.Linq" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upaf="clr-namespace:UiPath.Persistence.Activities.FormTask;assembly=UiPath.Persistence.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="43">
       <x:String>System.Activities</x:String>
@@ -82,7 +82,7 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="476.8,4952.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="476.8,5052.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="invoiceXMLPath" />
       <Variable x:TypeArguments="s:DateTime" Name="invoiceDate" />
@@ -112,7 +112,7 @@
         <OutArgument x:TypeArguments="x:String">[invoiceXMLPath]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">["C:\Users\kalaj\Documents\UiPath\InvoiceProcessing1\Data\ExportsXML\Фактура11.pdf"]</InArgument>
+        <InArgument x:TypeArguments="x:String">["C:\Users\kalaj\Documents\UiPath\InvoiceProcessing1\Data\ExportsXML\Faktura11.pdf.xml"]</InArgument>
       </Assign.Value>
     </Assign>
     <ui:ReadTextFile Content="[xml]" DisplayName="Read Text File" FileName="[invoiceXMLPath]" sap:VirtualizedContainerService.HintSize="435.2,80.8" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
@@ -122,7 +122,7 @@
         <OutArgument x:TypeArguments="s:DateTime">[invoiceDate]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="s:DateTime">[Datetime.ParseExact(xmlDeserialized.Root.Element("DateOfIssue").ToString,“dd/MM/yyyy”,System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
+        <InArgument x:TypeArguments="s:DateTime">[Datetime.ParseExact(xmlDeserialized.Root.Element("DateOfIssue").Value,“dd/MM/yyyy”,System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="435.2,60" sap2010:WorkflowViewState.IdRef="Assign_3">
@@ -130,16 +130,24 @@
         <OutArgument x:TypeArguments="x:String">[invoiceVendor]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[xmlDeserialized.Root.Element("ReceiverName").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String">[xmlDeserialized.Root.Element("ReceiverName").Value]</InArgument>
       </Assign.Value>
     </Assign>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="435.2,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[invoiceDate.ToString]" />
-    <ui:DatabaseConnect DatabaseConnection="[dbConnection]" DisplayName="Connect" sap:VirtualizedContainerService.HintSize="435.2,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.SqlClient" ConnectionString="Data Source=DESKTOP-796UQBC\MSSQLSERVER01;Initial Catalog=SuperMarket;Integrated Security=True" />
+    <ui:DatabaseConnect DatabaseConnection="[dbConnection]" DisplayName="Connect" sap:VirtualizedContainerService.HintSize="435.2,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.SqlClient" ConnectionString="Data Source=DESKTOP-L009896\SQLEXPRESS;Initial Catalog=SuperMarket;Integrated Security=True" />
     <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[dt]" DisplayName="Execute Query" ExistingDbConnection="[dbConnection]" sap:VirtualizedContainerService.HintSize="435.2,89.6" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="select '[' + cast(AcceptanceDate as varchar(11)) + '] - ' + cast(AcceptanceTotalAmount as varchar(25)) + ' den. - (' + cast(AcceptanceId as varchar(25)) + ')' from acceptance_document where vendor = 'vendor1' and DATEDIFF(day, AcceptanceDate, GETDATE()) &lt; 30;">
       <ui:ExecuteQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>
     </ui:ExecuteQuery>
+    <Assign sap:VirtualizedContainerService.HintSize="435.2,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[dt.TableName]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">dt</InArgument>
+      </Assign.Value>
+    </Assign>
     <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="435.2,260.8" sap2010:WorkflowViewState.IdRef="CommentOut_12">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="375.2,182.4" sap2010:WorkflowViewState.IdRef="Sequence_15">
@@ -216,7 +224,7 @@
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <upaf:CreateFormTask BucketFolderPath="{x:Null}" BucketName="{x:Null}" ExternalTag="{x:Null}" TimeoutMs="{x:Null}" DisplayName="Create Form Task" FormLayout="%[{&quot;label&quot;:&quot;Select&quot;,&quot;placeholder&quot;:&quot;select &quot;,&quot;tableView&quot;:true,&quot;data&quot;:{&quot;values&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;}]},&quot;validate&quot;:{&quot;onlyAvailableItems&quot;:false},&quot;key&quot;:&quot;listInput&quot;,&quot;type&quot;:&quot;select&quot;,&quot;indexeddb&quot;:{&quot;filter&quot;:{}},&quot;input&quot;:true},{&quot;label&quot;:&quot;Submit&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;submit&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;},{&quot;columns&quot;:[{&quot;components&quot;:[],&quot;width&quot;:6,&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;md&quot;},{&quot;components&quot;:[],&quot;width&quot;:6,&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;md&quot;}],&quot;key&quot;:&quot;columns&quot;,&quot;type&quot;:&quot;columns&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Columns&quot;}]" GenerateInputFields="True" sap:VirtualizedContainerService.HintSize="435.2,372.8" sap2010:WorkflowViewState.IdRef="CreateFormTask_1" TaskCatalog="[&quot;acceptanceCatalog&quot;]" TaskOutput="[taskObj]" TaskPriority="[TaskPriority.Medium]" TaskTitle="[Path.GetFileName(invoiceXMLPath)+&quot; acceptance&quot;]">
+    <upaf:CreateFormTask BucketFolderPath="{x:Null}" ExternalTag="{x:Null}" TimeoutMs="{x:Null}" BucketName="DocumentProcessing" DisplayName="Create Form Task" FolderPath="Document Understanding" FormLayout="%[{&quot;label&quot;:&quot;Select&quot;,&quot;placeholder&quot;:&quot;select &quot;,&quot;tableView&quot;:true,&quot;data&quot;:{&quot;values&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;}]},&quot;validate&quot;:{&quot;onlyAvailableItems&quot;:false},&quot;key&quot;:&quot;listInput&quot;,&quot;type&quot;:&quot;select&quot;,&quot;indexeddb&quot;:{&quot;filter&quot;:{}},&quot;input&quot;:true},{&quot;label&quot;:&quot;Submit&quot;,&quot;tableView&quot;:false,&quot;key&quot;:&quot;submit&quot;,&quot;custom&quot;:&quot;instance.emit('executeDoBlock', instance.component);&quot;,&quot;input&quot;:true,&quot;type&quot;:&quot;button&quot;},{&quot;columns&quot;:[{&quot;components&quot;:[],&quot;width&quot;:6,&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;md&quot;},{&quot;components&quot;:[],&quot;width&quot;:6,&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;md&quot;}],&quot;key&quot;:&quot;columns&quot;,&quot;type&quot;:&quot;columns&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;label&quot;:&quot;Columns&quot;}]" GenerateInputFields="True" sap:VirtualizedContainerService.HintSize="435.2,372.8" sap2010:WorkflowViewState.IdRef="CreateFormTask_1" TaskCatalog="[&quot;acceptanceCatalog&quot;]" TaskOutput="[taskObj]" TaskPriority="[TaskPriority.Medium]" TaskTitle="[Path.GetFileName(invoiceXMLPath)+&quot; acceptance&quot;]">
       <upaf:CreateFormTask.FormData>
         <InArgument x:TypeArguments="scg:List(x:String)" x:Key="listInput_dropdown">[listInput]</InArgument>
       </upaf:CreateFormTask.FormData>
@@ -245,7 +253,7 @@
         <OutArgument x:TypeArguments="x:String">[xmlDeserialized.Root.Element("AcceptanceId").Value]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[jsonTaskData.Item("").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String">[Split(jsonTaskData.Item("listInput").ToString,"(")(1).Replace(")","")]</InArgument>
       </Assign.Value>
     </Assign>
     <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="435.2,133.6" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Save">
