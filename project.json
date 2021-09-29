@@ -9,7 +9,8 @@
     "UiPath.Mail.Activities": "[1.10.5]",
     "UiPath.Persistence.Activities": "[1.2.2]",
     "UiPath.System.Activities": "[21.4.1]",
-    "UiPath.UIAutomation.Activities": "[21.4.4]"
+    "UiPath.UIAutomation.Activities": "[21.4.4]",
+    "UiPath.WebAPI.Activities": "[1.9.1-preview]"
   },
   "webServices": [],
   "entitiesStores": [],
